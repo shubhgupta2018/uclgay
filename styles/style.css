@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "footer";
+    grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "memo-button" "footer";
     background-color: rgb(255, 255, 255);
     gap: 10px;
 }
@@ -25,7 +25,8 @@ header {
 }
 
 .page-link {
-    margin-left: 80px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 #pages {
@@ -61,7 +62,6 @@ header {
 }
 
 #title-text {
-    display: block;
     text-align: center;
     font-size: 28px;
     font-weight: bold;
@@ -69,6 +69,7 @@ header {
 
 #footer {
     grid-area: footer;
+    margin: 50px;
 }
 
 .description {
@@ -82,41 +83,72 @@ header {
 .main {
     grid-area: main_content;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "main_map content";
+    grid-template-areas: "left-content right-content";
     display: grid;
     margin: 50px;
+    gap: 50px;
 }
 
-#contents {
-    grid-area: content;
+#left-content {
+    grid-area: left-content;
     display: grid;
-    grid-template-rows: 3fr 1fr;
-    grid-template-areas: "userStories" "chart"
-}
-
-#the_map {
-    height: 80vh;
-    grid-area: main_map;
+    grid-template-rows: 5fr 1fr;
     grid-template-areas: "map" "buttonHome"
 }
 
-#theSurvey {
-    grid-area: survey;
-    justify-self: center;
-    /* added this to center the button in the div */
+#right-content {
+    grid-area: right-content;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "nonUserStories" "accessStories" "chart";
+    gap: 20px;
+}
+
+#theMap {
+    height: 80vh;
+    grid-area: map;
+    margin-bottom: 20px;
+}
+
+#nonUserStories {
+    grid-area: nonUserStories;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    overflow:scroll;
+}
+
+#accessStories {
+    grid-area: accessStories;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    overflow:scroll;
+}
+
+#chart {
+    grid-area: chart;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+.button-area {
+    grid-area: survey-button memo-button;
+    margin: 50px;
 }
 
 /* css for the button */
-#surveyButton {
-    grid-area: survey-button;
-    padding: 15px 32px;
-    margin: 10px;
+.button {
+    padding: 16px 32px;
     background-color: #4CAF50;
     cursor: pointer;
+    text-align: center;
+    float: right;
 }
 
 /* css for button to get rid of the underline */
-#surveyButton a {
+.button a {
     text-decoration: none;
 }
 
@@ -126,6 +158,18 @@ header {
     grid-template-columns: repeat(2, 1fr);
 }
 
+#placeForNonUserStories {
+
+}
+
+#placeForAccessStories {
+    
+}
+
 .learn-more {
     margin: 50px;
+}
+
+#github-icon {
+    float: right;
 }

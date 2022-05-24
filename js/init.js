@@ -1,12 +1,12 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':5};
+let mapOptions = {'center': [34.0689,-118.4452],'zoom':5};
 
-let englishFirst = L.featureGroup();
-let nonEnglishFirst = L.featureGroup();
+let onCampus = L.featureGroup();
+let offCampus = L.featureGroup();
 
 let layers = {
-    "Speaks English First": englishFirst,
-    "Doesn't Speak English First": nonEnglishFirst
+    "On Campus PrEP Access": onCampus,
+    "Off Campus PrEP Access": offCampus
 };
 
 let circleOptions = {
@@ -18,9 +18,9 @@ let circleOptions = {
     fillOpacity: 0.8
 };
 
-const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2WyfKTyZJ-_ja3GGrxoAXwranavyDGXYsxeFUO4nvHpCJrkKhChymXQqUEyhdGLnz9VN6BJv5tOjp/pub?gid=1560504149&single=true&output=csv";
+const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSe3tKw51PzIC6dhUv5W8DEqg77o-usnZuTLBdgddFiD9rm3edq-Qa0pqJyOlSxnVtWEmR0YT--5Vmy/pub?output=csv";
 
-const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
+const map = L.map('theMap').setView(mapOptions.center, mapOptions.zoom);
 
 let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -37,16 +37,21 @@ L.control.layers(null,layers).addTo(map);
 // }).addTo(map);
 
 function addMarker(data){
-    if(data['Is your English your first language?'] == "Yes"){
+    if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes"){
         circleOptions.fillColor = "red"
-        englishFirst.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>English First Language</h2>`))
-        createButtons(data.lat,data.lng,data.Location)
+        onCampus.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>On Campus</h2>` + data['What address do you go to in order to access PrEP?']))
+        createButtons(data.lat,data.lng,data['What address do you go to in order to access PrEP?'])
         }
-    else{
-        circleOptions.fillColor = "blue"
-        nonEnglishFirst.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>Non-English First Language</h2>`))
-        createButtons(data.lat,data.lng,data.Location)
+
+    else if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "No"){
+        createNonUserStory(data)
+        //circleOptions.fillColor = "blue"
+        //offCampus.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>Off Campus</h2>` + data['What address do you go to in order to access PrEP?']))
+        //createButtons(data.lat,data.lng,data.Location)
     }
+    if(data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] != "") {
+        createAccessStory(data)
+    }  
     return data
 };
 
@@ -63,6 +68,22 @@ function createButtons(lat,lng,title){
     spaceForButtons.appendChild(newButton);//this adds the button to our page.
 };
 
+function createNonUserStory(data) {
+    const newNonUserStory = document.createElement("nonUserStory");
+    newNonUserStory.id = "nonUserStory"+title;
+    newNonUserStory.innerHTML = `<b>Describe the factors that have led you to not take PrEP, including if you have never heard of it.</b><br>` + data["Describe the factors that have led you to not take PrEP, including if you have never heard of it."]  + `<br><br>`;
+    const spaceForNonUserStories = document.getElementById('placeForNonUserStories')
+    spaceForNonUserStories.appendChild(newNonUserStory);//this adds the button to our page.
+}
+
+function createAccessStory(data) {
+    const newAccessStory = document.createElement("nonUserStory");
+    newAccessStory.id = "nonUserStory"+title;
+    newAccessStory.innerHTML = `<b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `<br><br>`;
+    const spaceFornewAccessStories = document.getElementById('placeForAccessStories')
+    spaceFornewAccessStories.appendChild(newAccessStory);//this adds the button to our page.
+}
+
 function loadData(url){
     Papa.parse(url, {
         header: true,
@@ -77,9 +98,9 @@ function processData(results){
         console.log(data)
         addMarker(data)
     })
-    englishFirst.addTo(map) // add our layers after markers have been made
-    nonEnglishFirst.addTo(map) // add our layers after markers have been made  
-    let allLayers = L.featureGroup([englishFirst,nonEnglishFirst]);
+    onCampus.addTo(map) // add our layers after markers have been made
+    offCampus.addTo(map) // add our layers after markers have been made  
+    let allLayers = L.featureGroup([onCampus,offCampus]);
     map.fitBounds(allLayers.getBounds());
 };
 
