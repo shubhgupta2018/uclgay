@@ -1,0 +1,175 @@
+body {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "memo-button" "footer";
+    background-color: rgb(255, 255, 255);
+    gap: 10px;
+}
+
+header {
+    grid-area: header;
+    justify-self: left;
+    align-self: left;
+    margin: 50px;
+}
+
+.header-text {
+    
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.page-link {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#pages {
+    float: right;
+}
+
+.topnav-left {
+    float: left;
+    margin: 0px 50px 0px 0px;
+  }
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    color: rgb(227, 37, 69);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    color: rgb(143, 36, 54);
+}
+
+#title {
+    text-align: center;
+}
+
+#title-text {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#footer {
+    grid-area: footer;
+    margin: 50px;
+}
+
+.description {
+    margin: 20px 50px 20px 50px;
+}
+
+.map-title {
+    margin: 20px 50px 20px 50px;
+}
+
+.main {
+    grid-area: main_content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left-content right-content";
+    display: grid;
+    margin: 50px;
+    gap: 50px;
+}
+
+#left-content {
+    grid-area: left-content;
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    grid-template-areas: "map" "buttonHome"
+}
+
+#right-content {
+    grid-area: right-content;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "nonUserStories" "accessStories" "chart";
+    gap: 20px;
+}
+
+#theMap {
+    height: 80vh;
+    grid-area: map;
+    margin-bottom: 20px;
+}
+
+#nonUserStories {
+    grid-area: nonUserStories;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    overflow:scroll;
+}
+
+#accessStories {
+    grid-area: accessStories;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    overflow:scroll;
+}
+
+#chart {
+    grid-area: chart;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+.button-area {
+    grid-area: survey-button memo-button;
+    margin: 50px;
+}
+
+/* css for the button */
+.button {
+    padding: 16px 32px;
+    background-color: #4CAF50;
+    cursor: pointer;
+    text-align: center;
+    float: right;
+}
+
+/* css for button to get rid of the underline */
+.button a {
+    text-decoration: none;
+}
+
+#placeForButtons {
+    grid-area: buttonHome;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#placeForNonUserStories {
+
+}
+
+#placeForAccessStories {
+    
+}
+
+.learn-more {
+    margin: 50px;
+}
+
+#github-icon {
+    float: right;
+}

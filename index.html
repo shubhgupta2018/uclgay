@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello World</title>
+    <!-- hint: remember to change your page title! -->
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!-- Leaflet's css-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Leaflet's JavaScript-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/papaparse.min.js"></script>
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="topnav">
+            <div class="topnav-left">
+                <a href="index.html">icon</a>
+            </div>
+            <div class="header-text">
+                <div id="title">
+                    <span id="title-text">project title</span>
+                </div>
+                <div id="pages">
+                    <a href="index.html" class="page-link">Home</a>
+                    <a href="about.html" class="page-link">About/Memo</a>
+                    <a href="survey.html" class="active page-link">Survey</a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="description">
+        <h2>Project Description</h2>
+        <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+    </div>
+
+    <div class="map-title">
+        <h2>Map Title</h2>
+        <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+    </div>
+
+    <div class="main">
+        <div id="left-content">
+            <div id="theMap"></div>
+            <div id="placeForButtons"></div>
+        </div>
+
+        <div id="right-content">
+            <div id="nonUserStories">
+                <h2>Non-Prep Users</h2>
+                <div id="placeForNonUserStories"></div>
+            </div>
+            <div id="accessStories">
+                <h2>PrEP Accessibility</h2>
+                <div id="placeForAccessStories"></div>
+            </div>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <div class="button-area">
+        <div class="button">
+            survey button
+        </div>
+    </div>
+
+    <div class="learn-more">
+        <h2>Learn More About our Project</h2>
+        <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+    </div>
+
+    <div class="button-area">
+        <div class="button">
+            memo button
+        </div>
+    </div>
+
+    <div id="footer">
+        Copyright(2022)
+        <!-- github button here -->
+        <div id="github-icon">
+            <a href="https://github.com/shubhgupta2018/uclgay" target="_blank"><img
+                src="images/icons8-github.svg" alt="GitHub"></a>
+        </div>
+    </div>
+    <script src="js/init.js"></script>
+</body>
+
+</html>
