@@ -1,41 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hello World</title>
-        <!-- hint: remember to change your page title! -->
-        <meta charset="utf-8" />
-        <link rel="shortcut icon" href="#">
-        <link rel="stylesheet" href="styles/style.css">
 
-        <!-- Leaflet's css-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<head>
+    <title>Hello World</title>
+    <!-- hint: remember to change your page title! -->
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="styles/style.css">
 
-        <!-- Leaflet's JavaScript-->
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="js/papaparse.min.js"></script>
-    </head>
+    <!-- Leaflet's css-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-    <body>
-        <header>
-            Covid Vaccination Stories
-        </header>
+    <!-- Leaflet's JavaScript-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/papaparse.min.js"></script>
 
-        <div class="main">
-            <div id="contents">
-                <div id="placeForButtons"></div>
-                <!-- Be sure to use your own survey here!!!!!!! -->
-                <div id="theSurvey">
-                    <div id="surveyButton">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScD0IOr_U4r0q4HlBkZ7olkA5OJpgInePF8DQbIrIWDeTm1jw/viewform">📝Take the survey</a>
-                    </div>
-                </div>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 
+<body>
+    <header>
+        <div class="topnav">
+            <div class="topnav-left">
+                <a href="index.html">icon</a>
             </div>
-            <div id="the_map"></div>
+            <div class="header-text">
+                <div id="title">
+                    <span id="title-text">project title</span>
+                </div>
+                <div id="pages">
+                    <a href="index.html" class="page-link">Home</a>
+                    <a href="about.html" class="page-link">About/Memo</a>
+                    <a href="survey.html" class="active page-link">Survey</a>
+                    
+                    
+                </div>
+            </div>
+
         </div>
-        <div id="footer">
-            Copyright(2022)
+    </header>
+
+    <div class="description">
+        <h2>Project Description</h2>
+        <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+    </div>
+
+    <div class="map-title">
+        <h2>Map Title</h2>
+    </div>
+
+    <div class="main">
+        <div id="contents">
+            <div id="placeForButtons"></div>
+            <!-- Be sure to use your own survey here!!!!!!! -->
+
+
         </div>
-        <script src="js/init.js"></script>
-    </body>
+        <div id="the_map"></div>
+    </div>
+
+    <div class="survey-button">
+        <div id="surveyButton">
+            survey button
+        </div>
+    </div>
+
+    <div class="learn-more">
+        <h2>Learn More About our Project</h2>
+        <p>blah blah blah</p>
+    </div>
+
+    <div id="footer">
+        Copyright(2022)
+        <!-- github button here -->
+    </div>
+    <script src="js/init.js"></script>
+</body>
+
 </html>
