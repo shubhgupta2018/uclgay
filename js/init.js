@@ -29,6 +29,17 @@ let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 
 Esri_WorldGrayCanvas.addTo(map);
 
+// Figuring out chart HELPPPP
+
+function count(data) {
+    if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes"){
+        takeprep += 1
+    }
+    else{
+        lackprep += 1
+    };
+    return data
+}
 // add layer control box
 L.control.layers(null,layers).addTo(map);
 
