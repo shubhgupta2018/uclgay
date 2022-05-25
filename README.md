@@ -5,3 +5,6 @@ By focusing on LGBTQ+ identifying UCLA undergraduate students, our mapplication 
 
 ## What technical and ethical problems could there be in developing this tool?
 Potential technical and ethical problems with this project include obtaining enough responses to be statistically significant, obtaining a representative sample of the LGBTQ+ identifying undergraduate UCLA community, and accounting for individuals who are questioning their sexuality but do not yet feel comfortable identifying as part of the LGBTQ+ community.
+
+## What technology was used?
+We used HTML, CSS, and JavaScript for the development of the web app. We created the interactive map showing where students obtain PrEP using Leaflet, and we created the bar chart comparing the number of PrEP users vs non-PrEP users using Chart.js. Papaparse allows us to parse through the CSV formatted data we obtained using Google Forms and Google Sheets.

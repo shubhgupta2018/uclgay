@@ -50,7 +50,7 @@ L.control.layers(null,layers).addTo(map);
 function addMarker(data){
     if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes"){
         circleOptions.fillColor = "red"
-        onCampus.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>On Campus</h2>` + data['What address do you go to in order to access PrEP?']))
+        onCampus.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>` + data['What address do you go to in order to access PrEP?'] + `</h2>` + data['Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.']))
         createButtons(data.lat,data.lng,data['What address do you go to in order to access PrEP?'])
         }
 
