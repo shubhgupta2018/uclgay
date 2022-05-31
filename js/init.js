@@ -18,6 +18,10 @@ let circleOptions = {
     fillOpacity: 0.8
 };
 
+// keep track of values for chart
+let takeprep = 0;
+let lackprep = 0;
+
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSe3tKw51PzIC6dhUv5W8DEqg77o-usnZuTLBdgddFiD9rm3edq-Qa0pqJyOlSxnVtWEmR0YT--5Vmy/pub?output=csv";
 
 const map = L.map('theMap').setView(mapOptions.center, mapOptions.zoom);
@@ -29,7 +33,7 @@ let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 
 Esri_WorldGrayCanvas.addTo(map);
 
-// Figuring out chart HELPPPP
+// Figuring out chart by first adding 
 
 function count(data) {
     if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes"){
@@ -40,6 +44,7 @@ function count(data) {
     };
     return data
 }
+
 // add layer control box
 L.control.layers(null,layers).addTo(map);
 
@@ -116,3 +121,32 @@ function processData(results){
 };
 
 loadData(dataUrl)
+
+// Load the chart
+
+function addChart(){
+    // create the new chart here, target the id in the html called "chart"
+    new Chart(document.getElementById("chart"), {
+        type: 'bar', //can change to 'bar','line' chart or others
+        data: {
+            // labels for data here
+        labels: ["Yes","No"],
+        datasets: [
+            {
+            label: "Count",
+            backgroundColor: ["blue", "red"],
+            data: [takeprep,lackprep]
+            }
+        ]
+        },
+        options: {
+            responsive: true, //turn on responsive mode changes with page size
+            maintainAspectRatio: false, // if `true` causes weird layout issues
+            legend: { display: true },
+            title: {
+                display: true,
+                text: 'Survey Respondants'
+            }
+        }
+    });
+}
