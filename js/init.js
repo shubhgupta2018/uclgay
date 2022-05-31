@@ -33,7 +33,7 @@ let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 
 Esri_WorldGrayCanvas.addTo(map);
 
-// Figuring out chart by first adding 
+// Figuring out chart by first adding  
 
 function count(data) {
     if(data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes"){
@@ -68,7 +68,7 @@ function addMarker(data){
     if(data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] != "") {
         createAccessStory(data)
     }  
-    return data
+    return count(data)
 };
 
 function createButtons(lat,lng,title){
@@ -118,6 +118,7 @@ function processData(results){
     offCampus.addTo(map) // add our layers after markers have been made  
     let allLayers = L.featureGroup([onCampus,offCampus]);
     map.fitBounds(allLayers.getBounds());
+     addChart()
 };
 
 loadData(dataUrl)
@@ -127,7 +128,7 @@ loadData(dataUrl)
 function addChart(){
     // create the new chart here, target the id in the html called "chart"
     new Chart(document.getElementById("chart"), {
-        type: 'bar', //can change to 'bar','line' chart or others
+        type: 'pie', //can change to 'bar','line' chart or others
         data: {
             // labels for data here
         labels: ["Yes","No"],
@@ -145,7 +146,7 @@ function addChart(){
             legend: { display: true },
             title: {
                 display: true,
-                text: 'Survey Respondants'
+                text: 'Do you take PrEP (pre-exposure prophylaxis) right now?'
             }
         }
     });
