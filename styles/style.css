@@ -1,6 +1,5 @@
 body {
     display: grid;
-    grid-template-rows: auto auto auto;
     grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "memo-button" "footer";
     background-color: rgb(255, 255, 255);
     gap: 10px;
@@ -82,7 +81,7 @@ header {
 
 .main {
     grid-area: main_content;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-areas: "left-content right-content";
     display: grid;
     margin: 50px;
@@ -91,26 +90,27 @@ header {
 
 #left-content {
     grid-area: left-content;
-    display: grid;
-    grid-template-rows: 5fr 1fr;
-    grid-template-areas: "map" "buttonHome"
 }
 
 #right-content {
     grid-area: right-content;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: "nonUserStories" "accessStories" "chart";
-    gap: 20px;
+}
+
+#instructions {
+    grid-area: right-content;
+}
+
+#large-stories {
+    grid-area: right-content;
 }
 
 #theMap {
-    height: 80vh;
+    height: 60vh;
     grid-area: map;
     margin-bottom: 20px;
 }
 
-#nonUserStories {
+/* #nonUserStories {
     grid-area: nonUserStories;
     border-style: solid;
     border-width: 2px;
@@ -124,7 +124,7 @@ header {
     border-width: 2px;
     border-color: rgb(0, 0, 0);
     overflow:scroll;
-}
+} */
 
 #chart {
     grid-area: chart;
