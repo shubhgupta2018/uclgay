@@ -1,18 +1,18 @@
 // declare variables
 let mapOptions = { 'center': [34.0689, -118.4452], 'zoom': 5 };
 
-let onCampus = L.featureGroup();
-let offCampus = L.featureGroup();
+// let onCampus = L.featureGroup();
+// let offCampus = L.featureGroup();
 
-let layers = {
-    "On Campus PrEP Access": onCampus,
-    "Off Campus PrEP Access": offCampus
-};
+// let layers = {
+//     "On Campus PrEP Access": onCampus,
+//     "Off Campus PrEP Access": offCampus
+// };
 
 let circleOptions = {
     radius: 4,
     fillColor: "#ff7800",
-    color: "#000",
+    color: "red",
     weight: 1,
     opacity: 1,
     fillOpacity: 0.8
@@ -46,7 +46,7 @@ function count(data) {
 }
 
 // add layer control box
-L.control.layers(null, layers).addTo(map);
+// L.control.layers(null, layers).addTo(map);
 
 // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -55,7 +55,7 @@ L.control.layers(null, layers).addTo(map);
 function addMarker(data) {
     if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes") {
         circleOptions.fillColor = "red"
-        onCampus.addLayer(L.circleMarker([data.lat, data.lng], circleOptions).bindPopup(`<h2>` + data['What address do you go to in order to access PrEP?'] + `</h2>` + data['Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.']))
+        L.circleMarker([data.lat, data.lng], circleOptions).bindPopup(`<h2>` + data['What address do you go to in order to access PrEP?'] + `</h2>` + data['Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.'])
         createButtons(data.lat, data.lng, data['What address do you go to in order to access PrEP?'])
     }
 
@@ -108,16 +108,39 @@ function loadData(url) {
     })
 };
 
+function createCard(data) {
+    const newCard = document.createElement("card");
+    newCard.innerHTML = `<div class="card">
+
+        <header class="card-header">
+          <h1>Header</h1>
+        </header>
+        
+        <div class="card-container">
+          <p>` + data["Describe the factors that have led you to not take PrEP, including if you have never heard of it."] + `</p>
+        </div>
+        
+        <footer class="card-footer">
+          <h5>Footer</h5>
+        </footer>
+        
+        </div>`;
+
+    const spaceForCards = document.getElementById('stories')
+    spaceForCards.appendChild(newCard);
+}
+
 function processData(results) {
     console.log(results)
     results.data.forEach(data => {
         console.log(data)
         addMarker(data)
+        createCard(data)
     })
-    onCampus.addTo(map) // add our layers after markers have been made
-    offCampus.addTo(map) // add our layers after markers have been made  
-    let allLayers = L.featureGroup([onCampus, offCampus]);
-    map.fitBounds(allLayers.getBounds());
+    // onCampus.addTo(map) // add our layers after markers have been made
+    // offCampus.addTo(map) // add our layers after markers have been made  
+    // let allLayers = L.featureGroup([onCampus, offCampus]);
+    // map.fitBounds(allLayers.getBounds());
     addChart()
 };
 
