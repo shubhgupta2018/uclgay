@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "memo-button" "footer";
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(161, 188, 255);
     gap: 10px;
 }
 
@@ -100,16 +100,22 @@ header {
     grid-area: right-content;
 }
 
-#stories {
+#yes-stories{
+    z-index: 9999;
+    padding: 10px;
+    position: relative;
+    grid-column: 3;
     overflow-y: scroll;
 }
 
-#large-stories {
+#no-stories {
+    height: 65vh;
     grid-area: right-content;
+    overflow-y: scroll;
 }
 
 #theMap {
-    height: 60vh;
+    height: 65vh;
     grid-area: map;
     margin-bottom: 20px;
     display: grid;
@@ -120,6 +126,8 @@ header {
 
 .card {
     margin-bottom: 10px;
+    background-color:antiquewhite;
+    text-align: center;
 }
 
 /* #nonUserStories {
@@ -168,14 +176,6 @@ header {
     grid-area: buttonHome;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-}
-
-#stories{
-    z-index: 9999;
-    background-color: white;
-    padding: 10px;
-    position: relative;
-    grid-column: 3;
 }
 
 /* #placeForNonUserStories {
