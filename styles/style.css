@@ -101,17 +101,23 @@ header {
 }
 
 #yes-stories{
+    height: 65vh;
     z-index: 9999;
     padding: 10px;
     position: relative;
     grid-column: 3;
     overflow-y: scroll;
+    cursor: default;
 }
 
 #no-stories {
     height: 65vh;
-    grid-area: right-content;
+    z-index: 9999;
+    padding: 10px;
+    position: relative;
+    grid-column: 3;
     overflow-y: scroll;
+    cursor: default;
 }
 
 #theMap {
