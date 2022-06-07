@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+
 <head>
     <title>PrEP at UCLA</title>
     <!-- hint: remember to change your page title! -->
@@ -35,7 +35,6 @@
                     <a href="about.html" class="page-link">About/Memo</a>
                     <a href="https://forms.gle/cJbQLoAYXkSpXD9q9" class="page-link" target="_blank">Survey</a>
 
-
                 </div>
             </div>
 
@@ -44,10 +43,14 @@
 
     <div class="description">
         <h2>Project Description</h2>
-        <p>PrEP, otherwise known as pre-exposure prophylaxis, is a medicine which aids to combat contracting HIV through sex and injection drug use. 
-            With its high success rate and an effort to  promote safe sexual health for fellow LGBTQ+ Bruins attending UCLA, our group project focused on 
-            sharing their experiences, opinions, and own access to PrEP in order to amplify their unique individual experience at UCLA and in the new 
-            life-saving contraceptive PrEP. In doing so, we hope it can raise awareness and be used as a platform for affordable and 
+        <p>PrEP, otherwise known as pre-exposure prophylaxis, is a medicine which aids to combat contracting HIV through
+            sex and injection drug use.
+            With its high success rate and an effort to promote safe sexual health for fellow LGBTQ+ Bruins attending
+            UCLA, our group project focused on
+            sharing their experiences, opinions, and own access to PrEP in order to amplify their unique individual
+            experience at UCLA and in the new
+            life-saving contraceptive PrEP. In doing so, we hope it can raise awareness and be used as a platform for
+            affordable and
             accessible safer sexual health with medicine such as PrEP for LGBTQ+ students.
         </p>
     </div>
@@ -55,23 +58,43 @@
     <div class="map-title">
         <h2>Locations of UCLA Student's Access to PrEP</h2>
         <p>To learn and visualize the current accessibility to PrEP for students was, we chose to map the responses
-            shared by LGBTQ+ UCLA undergraduate students about the location of their current access to PrEP if they do take it
-            based on our community survey, looking at whether their current access was on or off campus. 
+            shared by LGBTQ+ UCLA undergraduate students about the location of their current access to PrEP if they do
+            take it
+            based on our community survey, looking at whether their current access was on or off campus.
         </p>
     </div>
 
-    <div class="main">      
+    <div class="main">
         <div id="left-content">
             <div class="chart-container" style="width:100%; height:100%">
                 <canvas id="chart"></canvas>
             </div>
-            
+
         </div>
 
         <div id="right-content">
+            <button onclick="document.getElementById('instructions').style.display='block'"
+                class="instructions-button button-color">Instructions</button>
             <div id="theMap">
                 <div id="yes-stories" style="display: none"></div>
                 <div id="no-stories" style="display: none"></div>
+
+                <div id="instructions" class="modal">
+                    <div class="modal-content">
+                        <h2>Instructions</h2>
+                        <p>Haven pls fix this</p>
+                        <p>Basically the user has to click the different areas of the pie chart to view either
+                           PrEP users' responses to barriers + accessibility at ucla or non-PrEP users. user 
+                           can scroll thru the stories on the right side of the map associated with the respective
+                           users, and click on each card to fly to its respective location (for PrEP users). idk
+                           whether or not to mention this but non-PrEP users are represented by a large marker at 
+                           UCLA and there is no card clicking functionality. they can also click on the instructions 
+                           button above the map to view it again
+                        </p>
+                        <button onclick="document.getElementById('instructions').style.display='none'"
+                            class="hide-instructions">Take me to the map!</button>
+                    </div>
+                </div>
             </div>
             <!-- <div id="placeForButtons"></div> -->
             <!-- <div id="nonUserStories">
@@ -82,41 +105,51 @@
                 <h2>PrEP Accessibility</h2>
                 <div id="placeForAccessStories"></div>
             </div> -->
-            
+
         </div>
 
-        
+
     </div>
 
     <div class="button-area">
         <div class="button">
-            survey button
+            <a href="https://forms.gle/oS326yu2hAZthzu39" target="_blank">Survey</a>
         </div>
     </div>
 
     <div class="learn-more">
         <h2>Learn More About our Project</h2>
-        <p>This project was conducted by a group of UCLA undergraduate students, UCLGay, who all shared a grave interest 
-            in improving conditions for the LGBTQ+ undergraduate population at UCLA, for the course Asian American Studies: GIS Change and Web Development, taught by Albert S. Kochaphum. 
-            While reflecting and recognizing a lack of known resources for this population at UCLA in the access for PrEP, our group then focused on finding ways to empower this population of student's 
+        <p>This project was conducted by a group of UCLA undergraduate students, UCLGay, who all shared a grave interest
+            in improving conditions for the LGBTQ+ undergraduate population at UCLA, for the course Asian American
+            Studies: GIS Change and Web Development, taught by Albert S. Kochaphum.
+            While reflecting and recognizing a lack of known resources for this population at UCLA in the access for
+            PrEP, our group then focused on finding ways to empower this population of student's
             needs and voices.</p>
-            
-        <p>We focused on the difficult conversation surrounding PrEP, which is the accessibility of it to people of marginalized communities. In particular, we wanted to look at its accessibility for UCLA undergraduates who identify
-            as part of the LGBTQ+ community, comprising itself of multiple intersectionalities between race, gender identity, and sexual orientation that affect PrEP's accessibility to these populations. We applied GIS mapping to visualize 
-            where this community was currently accessing PrEP for themselves such as off or on campus, and asked their thoughts about UCLA's current provided access to PrEP for students. 
-            </p>
 
-        <p>With a drive and focus on appropriate and adequate allyship, accessibility in web design, and being descriptive while prescriptive, our project aims to be a source of advocacy, 
-            a platform to voice this community's historically silenced opinions and stories, and ultimately spread awareness about accessibility to PrEP for LGBTQ+ UCLA students. 
+        <p>We focused on the difficult conversation surrounding PrEP, which is the accessibility of it to people of
+            marginalized communities. In particular, we wanted to look at its accessibility for UCLA undergraduates who
+            identify
+            as part of the LGBTQ+ community, comprising itself of multiple intersectionalities between race, gender
+            identity, and sexual orientation that affect PrEP's accessibility to these populations. We applied GIS
+            mapping to visualize
+            where this community was currently accessing PrEP for themselves such as off or on campus, and asked their
+            thoughts about UCLA's current provided access to PrEP for students.
         </p>
 
-        <p>For more, read our project's proposal by clicking the button below!   
-            </p>
+        <p>With a drive and focus on appropriate and adequate allyship, accessibility in web design, and being
+            descriptive while prescriptive, our project aims to be a source of advocacy,
+            a platform to voice this community's historically silenced opinions and stories, and ultimately spread
+            awareness about accessibility to PrEP for LGBTQ+ UCLA students.
+        </p>
+
+        <p>For more, read our project's proposal by clicking the button below!
+        </p>
     </div>
 
     <div class="button-area">
         <div class="button">
-            memo button
+            <a href="https://docs.google.com/document/d/1ixQYmUilUsEuYVDs8aOE7snv9UvFk105X7b6BBjRmUo/edit?usp=sharing"
+                target="_blank">Memo</a>
         </div>
     </div>
 
@@ -124,8 +157,8 @@
         Copyright(2022)
         <!-- github button here -->
         <div id="github-icon">
-            <a href="https://github.com/shubhgupta2018/uclgay" target="_blank"><img
-                src="images/icons8-github.svg" alt="GitHub"></a>
+            <a href="https://github.com/shubhgupta2018/uclgay" target="_blank"><img src="images/icons8-github.svg"
+                    alt="GitHub"></a>
         </div>
     </div>
     <script src="js/init.js"></script>

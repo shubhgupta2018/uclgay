@@ -2,6 +2,21 @@
 // 2) Does it make sense to have no scroll on the map at all, or should I enable scrolling on only the portion of the map containing the cards
 // 3) Can I shrink the marker size to some default size when I zoom out (so that the large UCLA marker isn't misleading)
 
+
+// https://www.w3schools.com/w3css/w3css_modal.asp
+
+// https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_modal_close
+// Get the modal
+var modal = document.getElementById('modal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
 // declare variables
 let mapOptions = { 'center': [34.0689, -118.4452], 'zoom': 5 };
 
@@ -21,20 +36,18 @@ let doesNotTakePrEP = L.featureGroup();
 
 let circleOptions = {
     radius: 10,
-    weight: 3,
+    weight: 0,
     opacity: 1,
-    fillOpacity: 0.2,
-    color: "blue"
+    fillOpacity: 0.35
 };
 
 let noResponses = 0;
 
 let circleOptionsUCLA = {
     radius: 10,
-    weight: 3,
+    weight: 0,
     opacity: 1,
-    fillOpacity: 0.05,
-    color: "red"
+    fillOpacity: 0.35
 };
 
 // keep track of values for chart
@@ -51,8 +64,6 @@ let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 });
 
 Esri_WorldGrayCanvas.addTo(map);
-
-// Figuring out chart by first adding  
 
 function count(data) {
     if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes") {
@@ -71,8 +82,7 @@ function count(data) {
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 // }).addTo(map);
 
-yesMarkers = []
-noMarkers = []
+let maxRadius = 400;
 
 function addMarker(data) {
     if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "Yes") {
@@ -80,17 +90,12 @@ function addMarker(data) {
         marker = L.circleMarker([data.lat, data.lng], circleOptions).bindPopup(`<h2>` + data['address title'] + `</h2>`)
         takesPrEP.addLayer(marker);
         // createButtons(data.lat, data.lng, data['What address do you go to in order to access PrEP?'])
-        yesMarkers.push(marker);
     }
 
-    else {
-        circleOptionsUCLA.fillColor = "red"
-        circleOptionsUCLA.radius = 40 * noResponses;
-        //console.log(noResponses)
-        marker = L.circleMarker([34.0689, -118.4452], circleOptionsUCLA).bindPopup(`<h2>` + "UCLA" + `</h2>`)
-        doesNotTakePrEP.addLayer(marker);
-        noMarkers.push(marker)
-    }
+    // else {
+    //     doesNotTakePrEP.addLayer();
+    //     noMarkers.push(marker)
+    // }
 
     // else if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "No") {
     //     createNonUserStory(data)
@@ -104,18 +109,18 @@ function addMarker(data) {
     return count(data)
 };
 
-function createButtons(lat, lng, title) {
-    const newButton = document.createElement("button"); // adds a new button
-    newButton.id = "button" + title; // gives the button a unique id
-    newButton.innerHTML = title; // gives the button a title
-    newButton.setAttribute("lat", lat); // sets the latitude 
-    newButton.setAttribute("lng", lng); // sets the longitude 
-    newButton.addEventListener('click', function () {
-        map.flyTo([lat, lng]); //this is the flyTo from Leaflet
-    })
-    const spaceForButtons = document.getElementById('placeForButtons')
-    spaceForButtons.appendChild(newButton);//this adds the button to our page.
-};
+// function createButtons(lat, lng, title) {
+//     const newButton = document.createElement("button"); // adds a new button
+//     newButton.id = "button" + title; // gives the button a unique id
+//     newButton.innerHTML = title; // gives the button a title
+//     newButton.setAttribute("lat", lat); // sets the latitude 
+//     newButton.setAttribute("lng", lng); // sets the longitude 
+//     newButton.addEventListener('click', function () {
+//         map.flyTo([lat, lng]); //this is the flyTo from Leaflet
+//     })
+//     const spaceForButtons = document.getElementById('placeForButtons')
+//     spaceForButtons.appendChild(newButton);//this adds the button to our page.
+// };
 
 // function createNonUserStory(data) {
 //     const newNonUserStory = document.createElement("nonUserStory");
@@ -150,26 +155,21 @@ function createCard(data, number) {
         newCard.innerHTML = `<div class="card" style="cursor: pointer">
 
         <header class="card-header">
-          <h1>Header</h1>
+          <h1>` + data["address title"] + `</h1>
         </header>
         
         <div class="card-container">
+          <b>Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.</b><br>
           <p>` + data["Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP."] + `</p>
+          <b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>
+          <p>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `</p>
         </div>
-        
-        <footer class="card-footer">
-          <h5>Footer</h5>
-        </footer>
         
         </div>`;
         newCard.setAttribute("lat", data.lat); // sets the latitude 
         newCard.setAttribute("lng", data.lng); // sets the longitude 
         newCard.addEventListener('click', function () {
-        id = newCard.id.replace("card", "")
-        console.log("id: " + id)
         map.flyTo([data.lat, data.lng]); //this is the flyTo from Leaflet
-        console.log(yesMarkers[id])
-        yesMarkers[id].openPopup();
         
     })
         const spaceForCards = document.getElementById('yes-stories')
@@ -179,16 +179,15 @@ function createCard(data, number) {
         newCard.innerHTML = `<div class="card">
 
         <header class="card-header">
-          <h1>Header</h1>
+          <h1>UCLA</h1>
         </header>
         
         <div class="card-container">
+          <b>Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.</b><br>
           <p>` + data["Describe the factors that have led you to not take PrEP, including if you have never heard of it."] + `</p>
+          <b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>
+          <p>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `</p>
         </div>
-        
-        <footer class="card-footer">
-          <h5>Footer</h5>
-        </footer>
         
         </div>`;
         const spaceForCards = document.getElementById('no-stories')
@@ -198,19 +197,15 @@ function createCard(data, number) {
 
 function processData(results) {
     console.log(results)
-
     results.data.forEach(data => {
-        if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "No")
-        noResponses += 1;
-    })
 
-    let idNumber = 0;
-
-    results.data.forEach(data => {
+        if (data['Do you take PrEP (pre-exposure prophylaxis) right now?'] == "No") {
+            noResponses += 1;
+        }
         console.log(data)
+
         addMarker(data)
-        createCard(data, idNumber)
-        idNumber += 1;
+        createCard(data)
     })
     
     // for (let i = 0; i < results.data.length; i++) {
@@ -221,8 +216,9 @@ function processData(results) {
     // onCampus.addTo(map) // add our layers after markers have been made
     // offCampus.addTo(map) // add our layers after markers have been made  
     // let allLayers = L.featureGroup([onCampus, offCampus]);
-    // map.fitBounds(allLayers.getBounds());
+    // map.flyToBounds(allLayers.getBounds());
     addChart()
+    addUCLAMarker()
 };
 
 loadData(dataUrl)
@@ -257,7 +253,15 @@ function addChart() {
 }
 
 var canvas = document.getElementById("chart");
+
 canvas.onclick = function (evt) {
+    if (takesPrEP != undefined){
+        map.removeLayer(takesPrEP)
+    }
+    if (doesNotTakePrEP != undefined){
+        map.removeLayer(doesNotTakePrEP)
+    }
+ 
     var activePoints = chart.getElementsAtEvent(evt);
     console.log(activePoints);
     if (activePoints[0]) {
@@ -270,15 +274,72 @@ canvas.onclick = function (evt) {
         if (label == "Yes") {
             document.getElementById("no-stories").style.display = "none";
             document.getElementById("yes-stories").style.display = "block";
-            map.invalidateSize();
+            //map.invalidateSize();
             takesPrEP.addTo(map);
-            map.fitBounds(takesPrEP.getBounds());
+            map.removeLayer(uclamarker);
+            map.flyToBounds([takesPrEP.getBounds()], { duration: 2 });
         }
         else if (label == "No") {
             document.getElementById("yes-stories").style.display = "none";
             document.getElementById("no-stories").style.display = "block";
-            doesNotTakePrEP.addTo(map);
-            map.fitBounds(doesNotTakePrEP.getBounds());
+            // doesNotTakePrEP.addTo(map);
+            uclamarker.addTo(map);
+            map.flyToBounds([uclamarker.getBounds()], { duration: 2 });
+
+            // map.flyToBounds(uclamarker.getBounds());
         }
     }
 };
+
+let uclamarker = L.featureGroup()
+
+function addUCLAMarker(radiusMod=1){
+    uclamarker = uclamarker.clearLayers();
+    circleOptionsUCLA.fillColor = "red";
+    // let theRadius = (40 * noResponses) * radius;
+    // console.log(theRadius)
+    // if (theRadius > maxRadius){
+    //     theRadius = maxRadius
+    // }
+    circleOptionsUCLA.radius = radiusMod;
+    //console.log(noResponses)
+    uclamarker.addLayer(L.circleMarker([34.0689, -118.4452], circleOptionsUCLA).bindPopup(`<h2>` + "UCLA" + `</h2>`))
+
+}
+
+function addUCLAmarkerOnZoom(zoomlevel){
+    console.log('🐤🐤🐤🐤🐤')
+    let radiusModifier = 1; 
+    console.log(zoomlevel)
+    for (let i = 0; i < zoomlevel; i++) {
+        radiusModifier += zoomlevel;
+      } 
+
+
+    console.log('radiusModifier')
+    console.log(radiusModifier)
+    addUCLAMarker(radiusModifier)
+}
+
+// https://stackoverflow.com/questions/49144542/how-to-detect-if-leaflet-map-is-zoomed-in-or-zoomed-out
+let prevZoom = map.getZoom();
+
+map.on('zoomend',function(e){
+	// debugger;
+	let currZoom = map.getZoom();
+    
+    let diff = prevZoom - currZoom;
+    if(diff > 0){
+        
+  	   console.log('zoomed out');
+    } else if(diff < 0) {
+
+  	   console.log('zoomed in');
+    } else {
+  	   console.log('no change');
+    }
+    addUCLAmarkerOnZoom(currZoom)
+    prevZoom = currZoom;
+    console.log('currZoom');
+    console.log(currZoom);
+});
