@@ -1,15 +1,40 @@
 body {
     display: grid;
-    grid-template-areas: "header" "description" "map-title" "main_content" "survey-button" "learn-more" "memo-button" "footer";
-    background-color: rgb(161, 188, 255);
-    gap: 10px;
-}
+    grid-template-areas: "header" "main_content" "survey-button" "learn-more" "memo-button" "footer";
+    gap: 20px;
+    background: linear-gradient(
+        to right,
+        rgb(200, 190, 255) 0%,
+        rgb(222, 168, 248) 10%,
+        rgb(168, 222, 258) 30%,
+        rgb(189, 250, 205) 42%,
+        rgb(243, 250, 189) 58%,
+        rgb(250, 227, 189) 70%,
+        rgb(248, 172, 171) 95%,
+        rgb(254, 170, 212) 100%
+      );
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+  }
+  
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
 
 header {
     grid-area: header;
     justify-self: left;
     align-self: left;
-    margin: 50px;
+    margin: 30px;
 }
 
 .header-text {
@@ -19,13 +44,16 @@ header {
 .topnav {
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
-    margin-bottom: 10px;
+    /*overflow: hidden; 
+    margin-bottom: 10px; */  
 }
 
 .page-link {
     margin-left: 40px;
     margin-right: 40px;
+    padding-bottom: 20x;
+    border-bottom:2px solid;
+    border-bottom-style: solid;
 }
 
 #pages {
@@ -39,21 +67,22 @@ header {
 
 /* Style the links inside the navigation bar */
 .topnav a {
-    color: #000000;
+    color: black;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    font-weight: bold;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; font-style: bold; font-variant: normal; font-weight: 700; line-height: 26.4px;
+    padding-top: 10px;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-    color: rgb(227, 37, 69);
+    color: rgb(164, 154, 156);
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    color: rgb(143, 36, 54);
+    color: rgb(96, 88, 89);
 }
 
 #title {
@@ -62,13 +91,22 @@ header {
 
 #title-text {
     text-align: center;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; font-style: italic; font-variant: normal; font-weight: 700; line-height: 26.4px;
+}
+
+p {
+    font-family: Cambria, Georgia, serif; font-size: 14px; font-style: normal; font-variant: normal;
+}
+
+h1, h2 { 
+    font-family: Cambria, Georgia, serif; font-size: 18px; font-style: normal; font-variant: normal;
 }
 
 #footer {
     grid-area: footer;
-    margin: 50px;
+    margin: 20px;
 }
 
 .description {
@@ -85,7 +123,10 @@ header {
     grid-template-areas: "left-content right-content";
     display: grid;
     margin: 50px;
-    gap: 50px;
+    gap: 30px;
+    border-radius: 15px;
+    border: 30px solid white;
+    background-color: white;
 }
 
 #left-content {
@@ -136,6 +177,8 @@ header {
     text-align: center;
 }
 
+
+
 /* #nonUserStories {
     grid-area: nonUserStories;
     border-style: solid;
@@ -154,9 +197,10 @@ header {
 
 #chart {
     grid-area: chart;
-    border-style: solid;
+    border-style: dashed; 
+    border-radius: 10px;
+    border-color: linear-gradient(60deg, rgba(238,174,202,0.840795693277311) 25%, rgba(173,233,148,0.8323923319327731) 50%, rgba(148,187,233,0.8800113795518207) 75%, rgba(210,199,238,0.9500393907563025) 100%);
     border-width: 2px;
-    border-color: rgb(0, 0, 0);
 }
 
 .button-area {
@@ -196,6 +240,15 @@ header {
     margin: 50px;
 }
 
+.about {
+    border-radius: 15px;
+    border: 30px solid white;
+    background-color: white;
+    margin: 50px;
+    gap: 30px;
+}
+
 #github-icon {
     float: right;
 }
+
