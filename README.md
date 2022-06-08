@@ -20,8 +20,10 @@ The potential long-term impact of this project is becoming a source that will sh
 
 
 ## Screenshots
-<!-- ![Example screenshot](./img/screenshot.png) -->
+<!-- ![Example screenshot](./images/website.png) -->
 <!-- If you have screenshots you'd like to share, include them here. -->
+
+![Screenshot of Website Home Page](./images/website.png)
 
 ## Limitations/Room for Improvement
 
