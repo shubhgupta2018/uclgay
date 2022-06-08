@@ -159,7 +159,7 @@ function createCard(data, number) {
       
       <div class="card-container">
         <b>Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.</b><br>
-        <p>` + data["Describe the factors that have led you to not take PrEP, including if you have never heard of it."] + `</p>
+        <p>` + data["Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP."] + `</p>
         <b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>
         <p>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `</p>
       </div>
