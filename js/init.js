@@ -152,20 +152,19 @@ function createCard(data, number) {
     newCard.id = "card" + number;
 
     if (data["Do you take PrEP (pre-exposure prophylaxis) right now?"] == "Yes") {
-        newCard.innerHTML = `<div class="card" style="cursor: pointer">
-
-        <header class="card-header">
-          <h1>` + data["address title"] + `</h1>
-        </header>
-        
-        <div class="card-container">
-          <b>Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.</b><br>
-          <p>` + data["Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP."] + `</p>
-          <b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>
-          <p>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `</p>
-        </div>
-        
-        </div>`;
+        newCard.innerHTML = 
+        `<div class="card">  <header class="card-header">
+        <h1>` + data["address title"]+ `</h1>
+      </header>
+      
+      <div class="card-container">
+        <b>Describe the factors that have encouraged you and/or made it more difficult for you to take PrEP.</b><br>
+        <p>` + data["Describe the factors that have led you to not take PrEP, including if you have never heard of it."] + `</p>
+        <b>Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?</b><br>
+        <p>` + data["Are you currently satisfied or not with accessibility to PrEP at UCLA, why or why not?"] + `</p>
+      </div>
+      
+      </div>`;
         newCard.setAttribute("lat", data.lat); // sets the latitude 
         newCard.setAttribute("lng", data.lng); // sets the longitude 
         newCard.addEventListener('click', function () {
